@@ -84,12 +84,24 @@
 </template>
 
 <script>
+import request from '../utils/APIRequest'
+
 export default {
   name: 'HelloWorld',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  created () {
+    request({
+      url: '/register',
+      method: 'POST'
+    }).then((res) => {
+      console.log(res.data.data.token)
+    }).catch((error) => {
+      console.log(error)
+    })
   }
 }
 </script>
