@@ -14,5 +14,11 @@ Mock.mock('/register', POST_METHOD, Object.assign({}, API_RESULT,
 ))
 
 Mock.mock('login', POST_METHOD, {
-
+  data: {
+    user: [{
+      username: 'admin',
+      password: '123',
+      token: 'e32141241sd2231'
+    }]
+  }
 })
