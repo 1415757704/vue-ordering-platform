@@ -12,11 +12,7 @@
 
 <script>
 import HeaderComponent from './header'
-
-const errorMsg = {
-  empty: '輸入不能為空',
-  deference: '兩次密碼不一致'
-}
+import { errorMsg } from 'config/errorMsgConfig'
 
 export default {
   data () {
@@ -78,7 +74,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" rel="stylesheet/scss" scoped>
 @import 'common/style/mixin.scss';
 .register-page{
   padding-top: px2rem(10);

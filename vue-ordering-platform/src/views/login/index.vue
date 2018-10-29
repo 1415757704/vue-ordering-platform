@@ -2,8 +2,8 @@
   <div class="login-page">
     <header-component></header-component>
     <div class="login-form">
-      <el-input v-model="login.name" placeholder="賬號" :class="{empty: isNameEmpty}" class="name"></el-input>
-      <el-input v-model="login.password" placeholder="密碼" :class="{empty: isPasswordEmpty}" class="password"></el-input>
+      <el-input v-model="login.name" placeholder="賬號" @blur="_validateEmpty($event, login.name)" class="name"></el-input>
+      <el-input v-model="login.password" placeholder="密碼" @blur="_validateEmpty($event, login.password)" class="password"></el-input>
       <span class="forget-password-btn" @click="forgetPassword()">忘記密碼？</span>
       <el-button type="primary" class="login-bn" @click="loginAction()">登錄</el-button>
     </div>
@@ -12,32 +12,56 @@
 
 <script>
 import HeaderComponent from './header'
+import { errorMsg } from 'config/errorMsgConfig'
+
 export default {
   data () {
     return {
       login: {
         name: '',
         password: ''
+      },
+      validate: {
+        success: false,
+        msg: ''
       }
     }
   },
   methods: {
+    _validateEmpty ($event, data) {
+      if (!data) {
+        this._changeValidateMessage(false, errorMsg.empty)
+        $event.target.classList.add('empty')
+        return false
+      }
+      $event.target.classList.remove('empty')
+      return true
+    },
+    _manualValidate () {
+      if (!this.login.name || !this.login.password) {
+        this.$message(errorMsg.empty)
+        return false
+      }
+      return true
+    },
     forgetPassword () {
       // TODO
       console.log('forgetPassword')
     },
+    _changeValidateMessage (success, msg) {
+      this.validate.success = success
+      this.validate.msg = msg
+    },
     loginAction () {
-      // TODO
-      console.log(`${this.login.name}, ${this.login.password}`)
+      // 手動校驗
+      if (!this._manualValidate()) {
+        return
+      }
+
+      this.$message('success')
     }
   },
   computed: {
-    isNameEmpty () {
-      return this.login.name === undefined || this.login.name === ''
-    },
-    isPasswordEmpty () {
-      return this.login.password === undefined || this.login.password === ''
-    }
   },
   components: {
     HeaderComponent
