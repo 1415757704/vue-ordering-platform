@@ -20,12 +20,12 @@
 </template>
 
 <script>
-const i_tagElement = 'I'
+const ItagElement = 'I'
 export default {
   methods: {
     setClickEventListener ($event) {
       let targetNode = $event.target
-      if (i_tagElement === targetNode.tagName) {
+      if (ItagElement === targetNode.tagName) {
         // targetNode.classList.add()
       }
       console.log($event.target)
