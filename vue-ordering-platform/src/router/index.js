@@ -19,7 +19,14 @@ export default new Router({
     {
       path: '/mainFrame',
       name: 'mainFrame',
-      component: resolve => require(['views/layout'], resolve)
+      component: resolve => require(['views/layout'], resolve),
+      children: [
+        {
+          path: 'mine',
+          name: 'mine',
+          component: resolve => require(['views/layout/mine'], resolve)
+        }
+      ]
     }
   ]
 })

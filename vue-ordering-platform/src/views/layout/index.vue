@@ -1,19 +1,20 @@
 <template>
   <div class="layout-container">
     <div class="main-frame">
+      <router-view></router-view>
     </div>
     <div class="footer" @click="setClickEventListener($event)">
       <div class="icon-item">
-        <i class="icon iconfont icon-waimai-"></i>
+        <router-link to="/mainFrame/waimai"><i class="icon iconfont icon-waimai- footer-icon-wrap"></i></router-link>
       </div>
       <div class="icon-item">
-        <i class="icon iconfont icon-zhinanzhen"></i>
+        <router-link to="/mainFrame/zhinanzhen"><i class="icon iconfont icon-zhinanzhen footer-icon-wrap"></i></router-link>
       </div>
       <div class="icon-item">
-        <i class="icon iconfont icon-dingdan"></i>
+        <router-link to="/mainFrame/order"><i class="icon iconfont icon-dingdan footer-icon-wrap"></i></router-link>
       </div>
       <div class="icon-item">
-        <i class="icon iconfont icon-wode"></i>
+        <router-link to="/mainFrame/mine"><i class="icon iconfont icon-wode footer-icon-wrap"></i></router-link>
       </div>
     </div>
   </div>
@@ -21,15 +22,25 @@
 
 <script>
 const ItagElement = 'I'
+const Actived = 'actived'
+
 export default {
   methods: {
     setClickEventListener ($event) {
+      // remove all footer-icon active class
+      this._removeAllActivedClass()
       let targetNode = $event.target
       if (ItagElement === targetNode.tagName) {
-        // targetNode.classList.add()
+        targetNode.classList.add(Actived)
       }
       console.log($event.target)
       // $event.target.getElementsByTagName('i')[0].classList.remove('icon-waimai-')
+    },
+    _removeAllActivedClass () {
+      let footIconList = Array.from(document.getElementsByClassName('footer-icon-wrap'))
+      footIconList.forEach((item) => {
+        item.classList.remove(Actived)
+      })
     }
   }
 }
@@ -54,13 +65,12 @@ export default {
       flex: 1;
       @include center;
       i{
-        height: 32px;
-        width: 32px;
+        height: 100%;
+        width: 100%;
         font-size: 32px;
         display: inline-block;
-      }
-      i.actived {
-        color: #3a8ee6;
+        line-height: 40px;
+        text-align: center;
       }
     }
   }
