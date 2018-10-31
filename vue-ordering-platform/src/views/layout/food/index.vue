@@ -50,6 +50,13 @@
         </div>
       </div>
     </div>
+    <div class="merchant-list">
+      <div class="title">
+        <span class="line"></span>
+        <span class="desc">附近商家</span>
+        <span class="line"></span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -111,6 +118,8 @@ export default {
   }
   .assort-server{
     padding: px2rem(14);
+    background: #ffffff;
+    margin-bottom: px2rem(10);
     .one-row{
       display: flex;
       margin-bottom: px2rem(10);
@@ -131,6 +140,24 @@ export default {
           font-size: 14px;
           color: #2f2f2f;
         }
+      }
+    }
+  }
+  .merchant-list{
+    .title{
+      position: relative;
+      height: 18px;
+      line-height: 18px;
+      font-size: 0px;
+      text-align: center;
+      .desc{
+        display: inline-block;
+        margin: 0 6px;
+        height: 18px;
+        line-height: 18px;
+        font-size: 18px;
+        color: #333;
+        font-weight: 500;
       }
     }
   }

@@ -5,3 +5,13 @@
 .actived{
   color: #66b1ff;
 }
+
+.line{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  background: #000000;
+}
