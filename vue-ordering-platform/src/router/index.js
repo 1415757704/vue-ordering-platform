@@ -25,6 +25,16 @@ export default new Router({
           path: 'mine',
           name: 'mine',
           component: resolve => require(['views/layout/mine'], resolve)
+        },
+        {
+          path: 'order',
+          name: 'order',
+          component: resolve => require(['views/layout/order'], resolve)
+        },
+        {
+          path: 'food',
+          name: 'food',
+          component: resolve => require(['views/layout/food'], resolve)
         }
       ]
     }

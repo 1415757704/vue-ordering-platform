@@ -5,7 +5,7 @@
     </div>
     <div class="footer" @click="setClickEventListener($event)">
       <div class="icon-item">
-        <router-link to="/mainFrame/waimai"><i class="icon iconfont icon-waimai- footer-icon-wrap"></i></router-link>
+        <router-link to="/mainFrame/food"><i class="icon iconfont icon-waimai- footer-icon-wrap"></i></router-link>
       </div>
       <div class="icon-item">
         <router-link to="/mainFrame/zhinanzhen"><i class="icon iconfont icon-zhinanzhen footer-icon-wrap"></i></router-link>
