@@ -61,6 +61,9 @@ export default {
     display: flex;
     width: 100%;
     height: px2rem(40);
+    background-color: rgba(246,246,246,0.95);
+    z-index: 1100;
+    border-top: 1px solid #b6b6b6;
     .icon-item {
       flex: 1;
       @include center;

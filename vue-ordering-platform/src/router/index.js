@@ -22,6 +22,10 @@ export default new Router({
       component: resolve => require(['views/layout'], resolve),
       children: [
         {
+          path: '',
+          redirect: 'food'
+        },
+        {
           path: 'mine',
           name: 'mine',
           component: resolve => require(['views/layout/mine'], resolve)
