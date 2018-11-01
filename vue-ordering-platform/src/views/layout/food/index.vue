@@ -67,7 +67,7 @@
             </div>
             <div class="description">
               <div class="evaluate">
-                <i class="score"></i>
+                <scorce class="score"></scorce>
                 <span>月售</span><span class="num">999+</span>
                 <div class="time">
                   <span class="time-spend">40min</span>
@@ -108,7 +108,7 @@
             </div>
             <div class="description">
               <div class="evaluate">
-                <i class="score"></i>
+                <scorce class="score"></scorce>
                 <span>月售</span><span class="num">999+</span>
                 <div class="time">
                   <span class="time-spend">40min</span>
@@ -149,7 +149,7 @@
             </div>
             <div class="description">
               <div class="evaluate">
-                <i class="score"></i>
+                <scorce class="score"></scorce>
                 <span>月售</span><span class="num">999+</span>
                 <div class="time">
                   <span class="time-spend">40min</span>
@@ -186,7 +186,44 @@
 </template>
 
 <script>
+import Scorce from 'component/score_star'
+import { Loading } from 'element-ui'
+import { mapState } from 'vuex'
 export default {
+  methods: {
+    loading (isShow) {
+      if (isShow) {
+        this.loadingInstance = Loading.service({ fullscreen: true })
+        console.log('loadingInstance', this.loadingInstance)
+      } else {
+        this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+          if (this.loadingInstance) {
+            this.loadingInstance.close()
+          }
+          console.log('loadingInstance', this.loadingInstance)
+        })
+      }
+    }
+  },
+  data () {
+    return {
+      loadingInstance: ''
+    }
+  },
+  components: {
+    Scorce
+  },
+  computed: {
+    ...mapState({
+      isLoading: state => state.global.isShowLoading
+    })
+  },
+  watch: {
+    isLoading (isShow, oldVal) {
+      console.log('curVal', isShow)
+      this.loading(isShow)
+    }
+  }
 }
 </script>
 
@@ -356,6 +393,9 @@ export default {
             }
           }
         }
+      }
+      .merchant:not(:last-child){
+        border-bottom: 1px solid #b6b6b6;
       }
     }
   }

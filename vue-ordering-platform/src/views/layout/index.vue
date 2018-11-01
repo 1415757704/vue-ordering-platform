@@ -21,10 +21,19 @@
 </template>
 
 <script>
+import Request from '../../utils/APIRequest'
 const ItagElement = 'I'
 const Actived = 'actived'
 
 export default {
+  created () {
+    Request.post('/register', {})
+      .then((data) => {
+        console.log(data)
+      }).catch((err) => {
+        console.log(err)
+      })
+  },
   methods: {
     setClickEventListener ($event) {
       // remove all footer-icon active class
