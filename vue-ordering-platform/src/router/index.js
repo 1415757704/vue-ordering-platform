@@ -9,7 +9,7 @@ export default new Router({
     {
       path: '/',
       name: 'Login',
-      component: resolve => require(['views/login'], resolve)
+      component: resolve => require(['views/login'], resolve) // 入参是resolve，这个函数的返回结果是一个Promise对象，这个对应在组件被渲染的时候执行resolve回调去服务器获取组件
     },
     {
       path: '/register',
@@ -18,7 +18,6 @@ export default new Router({
     },
     {
       path: '/mainFrame',
-      name: 'mainFrame',
       component: resolve => require(['views/layout'], resolve),
       children: [
         {
@@ -37,8 +36,31 @@ export default new Router({
         },
         {
           path: 'food',
-          name: 'food',
-          component: resolve => require(['views/layout/food'], resolve)
+          component: resolve => require(['views/layout/food'], resolve),
+          children: [
+            {
+              path: 'detail',
+              component: resolve => require(['views/layout/food/detail'], resolve),
+              children: [
+                {
+                  path: '',
+                  redirect: 'list'
+                },
+                {
+                  path: 'list',
+                  component: resolve => require(['views/layout/food/detail/list'], resolve)
+                },
+                {
+                  path: 'comment',
+                  component: resolve => require(['views/layout/food/detail/comment'], resolve)
+                },
+                {
+                  path: 'merchant',
+                  component: resolve => require(['views/layout/food/detail/merchant'], resolve)
+                }
+              ]
+            }
+          ]
         }
       ]
     }
